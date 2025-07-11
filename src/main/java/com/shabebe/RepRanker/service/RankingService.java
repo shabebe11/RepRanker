@@ -11,6 +11,7 @@ public class RankingService {
 
   @Autowired private UserRepository userRepository;
 
+  // Getting a list of the top stats based on everyone
   public List<User> getTopBench() {
     return userRepository.findAllByOrderByBench(); // Spring handles this
   }
@@ -26,4 +27,7 @@ public class RankingService {
   public List<User> getTopBenchPressers() {
     return userRepository.findAllByOrderByTotal(); // Spring handles this
   }
+
+  // Getting a list of the top stats based on specific demographics ... will do later after testing
+  // the above
 }
