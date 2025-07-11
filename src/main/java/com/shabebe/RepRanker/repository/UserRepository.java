@@ -14,15 +14,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   List<User> findByWeight(int weightRange);
 
-  List<User> findByAge(int ageRange);
-
   List<User> findBySexAndWeight(String sex, int weightRange);
-
-  List<User> findBySexAndAge(String sex, int ageRange);
-
-  List<User> findByAgeAndWeight(int ageRange, int weightRange);
-
-  List<User> findBySexAgeAndWeight(String sex, int ageRange, int weightRange);
 
   // Getting the top 5 or 10 by ordering their stats
   List<User> findAllByOrderByBench();
