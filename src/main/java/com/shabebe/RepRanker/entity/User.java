@@ -18,7 +18,7 @@ public class User {
   @Column(name = "name")
   private String name;
 
-  private int weightRange;
+  private int weight;
   private String sex;
   private float bench;
   private float squat;
@@ -27,9 +27,9 @@ public class User {
 
   public User() {}
 
-  public User(String name, int weightRange, String sex) {
+  public User(String name, int weight, String sex) {
     this.name = name;
-    this.weightRange = weightRange;
+    this.weight = weight;
     this.sex = sex;
     this.bench = 0;
     this.squat = 0;
@@ -45,12 +45,12 @@ public class User {
     this.name = name;
   }
 
-  public int getWeightRange() {
-    return weightRange;
+  public int getWeight() {
+    return weight;
   }
 
-  public void setWeightRange(int weightRange) {
-    this.weightRange = weightRange;
+  public void setWeight(int weightRange) {
+    this.weight = weightRange;
   }
 
   public String getSex() {
