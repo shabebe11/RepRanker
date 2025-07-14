@@ -16,6 +16,9 @@ const App = () => {
 			nickname: newNickname,
 			sex: sex,
 			weight: newWeight,
+			bench: newBench,
+			squat: newSquat,
+			deadlift: newDeadlift
 		}
 
 		axios.post('/api/users/submit', submittedPerson)
