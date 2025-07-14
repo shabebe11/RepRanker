@@ -22,11 +22,11 @@ public class UserController {
   public ResponseEntity<?> submitUser(@RequestBody UserInputDto userInput) {
 
     // Error inputs
-    if (userInput.getName() == null || userInput.getName().isEmpty()) {
+    if (userInput.getNickname() == null || userInput.getNickname().isEmpty()) {
       return new ResponseEntity<>("Name is required", HttpStatus.BAD_REQUEST);
     }
 
-    if (userRepository.existsByName(userInput.getName())) {
+    if (userRepository.existsByName(userInput.getNickname())) {
       return new ResponseEntity<>("Nickname already exists", HttpStatus.CONFLICT);
     }
 
@@ -34,7 +34,7 @@ public class UserController {
       return new ResponseEntity<>("Sex is required", HttpStatus.BAD_REQUEST);
     }
 
-    if (userInput.getBodyweight() <= 0) {
+    if (userInput.getWeight() <= 0) {
       return new ResponseEntity<>("Bodyweight must be positive", HttpStatus.BAD_REQUEST);
     }
 
@@ -42,7 +42,7 @@ public class UserController {
       return new ResponseEntity<>("Lift values cannot be negative", HttpStatus.BAD_REQUEST);
     }
 
-    int weight = Math.round(userInput.getBodyweight() / 5f) * 5;
+    int weight = Math.round(userInput.getWeight() / 5f) * 5;
     if ("female".equalsIgnoreCase(userInput.getSex())) {
       weight = Math.max(40, Math.min(140, weight));
     } else {
@@ -50,7 +50,7 @@ public class UserController {
     }
 
     User user = new User();
-    user.setName(userInput.getName());
+    user.setName(userInput.getNickname());
     user.setSex(userInput.getSex());
     user.setWeight(weight);
     user.setBench(Math.round(userInput.getBench()));

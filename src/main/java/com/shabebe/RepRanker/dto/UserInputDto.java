@@ -1,19 +1,19 @@
 package com.shabebe.RepRanker.dto;
 
 public class UserInputDto {
-  private String name;
+  private String nickname;
   private String sex;
-  private int bodyweight;
+  private int weight;
   private int bench;
   private int squat;
   private int deadlift;
 
-  public String getName() {
-    return name;
+  public String getNickname() {
+    return nickname;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setNickname(String name) {
+    this.nickname = name;
   }
 
   public String getSex() {
@@ -24,12 +24,12 @@ public class UserInputDto {
     this.sex = sex;
   }
 
-  public Integer getBodyweight() {
-    return bodyweight;
+  public Integer getWeight() {
+    return weight;
   }
 
   public void setBodyweight(String bodyweight) {
-    this.bodyweight = parseStringToInteger(bodyweight);
+    this.weight = parseStringToInteger(bodyweight);
   }
 
   public Integer getBench() {
