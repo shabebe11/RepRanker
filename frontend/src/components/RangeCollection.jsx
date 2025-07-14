@@ -22,10 +22,9 @@ const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                 <Row>
                     <Col className={"p-0"}>
                         <RangeInput
-                            category={'Bench'}
                             value={newBench}
                             onChange={handleBench}
-                            min={20}
+                            min={5}
                             max={600}
                         />
                     </Col>
@@ -35,10 +34,9 @@ const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                 <Row>
                     <Col className={"p-0"}>
                         <RangeInput
-                            category={'Squat'}
                             value={newSquat}
                             onChange={handleSquat}
-                            min={20}
+                            min={5}
                             max={600}
                         />
                     </Col>
@@ -48,10 +46,9 @@ const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                 <Row>
                     <Col className={"p-0"}>
                         <RangeInput
-                            category={'Deadlift'}
                             value={newDeadlift}
                             onChange={handleDeadlift}
-                            min={20}
+                            min={5}
                             max={600}
                         />
                     </Col>
