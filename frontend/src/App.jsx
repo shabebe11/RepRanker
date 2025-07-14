@@ -19,12 +19,14 @@ const App = () => {
 	const [newSquat, setNewSquat] = useState(5)
 	const [newDeadlift, setNewDeadlift] = useState(5)
 
+	const [isChecked, setIsChecked] = useState(false)
+
 	const handleSubmit = (event) => {
 		event.preventDefault()
 		const submittedPerson = {
 			nickname: newNickname,
 			sex: sex,
-			weight: newWeight,
+			weight: isChecked ? newWeight : null,
 			bench: showBench ? newBench : 0,
 			squat: showDeadlift ? newSquat : 0,
 			deadlift: showDeadlift ? newDeadlift : 0
@@ -119,7 +121,10 @@ const App = () => {
 					className={"mb-3"}
 					type={"checkbox"}
 					label={"Weighted Ranking"}
-					onChange={(e) => setShowWeight(e.target.checked)} />
+					onChange={(e) =>
+						setIsChecked(!isChecked)
+						setShowWeight(e.target.checked)
+				} />
 				<Button className={"mt-2"} type="submit"> Submit </Button>
 			</form>
 		</div>
