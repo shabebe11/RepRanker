@@ -8,7 +8,7 @@ const App = () => {
 	const [sex, setSex] = useState('')
 	const [newNickname, setNewNickname] = useState('')
 	const [showWeight, setShowWeight] = useState(false)
-	const [newWeight, setNewWeight] = useState(null)
+	const [newWeight, setNewWeight] = useState('')
 
 	const [showScroller, setShowScroller] = useState('')
 	const [showBench, setShowBench] = useState(false)
@@ -31,8 +31,6 @@ const App = () => {
 			squat: showDeadlift ? newSquat : 0,
 			deadlift: showDeadlift ? newDeadlift : 0
 		}
-
-		console.log(submittedPerson)
 
 		axios.post('http://localhost:8080/api/users/submit', submittedPerson)
 
@@ -121,9 +119,10 @@ const App = () => {
 					className={"mb-3"}
 					type={"checkbox"}
 					label={"Weighted Ranking"}
-					onChange={(e) =>
+					onChange={(e) => {
 						setIsChecked(!isChecked)
 						setShowWeight(e.target.checked)
+					}
 				} />
 				<Button className={"mt-2"} type="submit"> Submit </Button>
 			</form>
