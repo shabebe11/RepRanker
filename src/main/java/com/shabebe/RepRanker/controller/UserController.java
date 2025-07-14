@@ -3,13 +3,17 @@ package com.shabebe.RepRanker.controller;
 import com.shabebe.RepRanker.dto.UserInputDto;
 import com.shabebe.RepRanker.entity.User;
 import com.shabebe.RepRanker.repository.UserRepository;
+import com.shabebe.RepRanker.service.UserService;
 import com.shabebe.RepRanker.util.LiftStandardsManager;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   @Autowired private UserRepository userRepository;
+  @Autowired private UserService userService;
 
   @PostMapping("/submit")
   public ResponseEntity<?> submitUser(@RequestBody UserInputDto userInput) {
@@ -72,5 +77,19 @@ public class UserController {
     userRepository.save(user);
 
     return new ResponseEntity<>(user, HttpStatus.CREATED);
+  }
+
+  @GetMapping
+  public List<User> getPlayers(
+      @RequestParam(required = false) String lift,
+      @RequestParam(required = false) String sex,
+      @RequestParam(required = false) String weight) {
+
+    if (weight != null) {
+      int actualWeight = Integer.parseInt(weight.trim());
+      return userService.getUsersByLiftAndSexAndWeight(lift, sex, actualWeight);
+    } else {
+      return userService.getUsersByLiftAndSex(lift, sex);
+    }
   }
 }

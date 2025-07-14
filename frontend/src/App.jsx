@@ -1,8 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Input from './Input'
+import './App.css';
 
 const App = () => {
+
+	useEffect(() => {
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+
 	const [sex, setSex] = useState('')
 	const [newNickname, setNewNickname] = useState('')
 	const [newWeight, setNewWeight] = useState('')
@@ -57,7 +73,7 @@ const App = () => {
 
 	return (
 		<>
-			<h1> User Form </h1>
+			<h1> RepRanker </h1>
 			<form onSubmit={handleSubmit}>
 				<Input
 					category={'Nickname'}
@@ -65,18 +81,23 @@ const App = () => {
 					value={newNickname}
 					onChange={handleNickname}
 				/>
-				<p>
-					<label htmlFor="sex"> Sex </label>
-					<select
-						id="sex"
-						value={sex}
-						onChange={handleSex}
-					>
-						<option value="">--Select--</option>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
-					</select>
-				</p>
+				<label>Sex</label>
+  <div className="sex-buttons">
+    <button
+      type="button" // Prevents form submission
+      className={`sex-button ${sex === 'male' ? 'active' : ''}`}
+      onClick={() => setSex('male')}
+    >
+      Male
+    </button>
+    <button
+      type="button"
+      className={`sex-button ${sex === 'female' ? 'active' : ''}`}
+      onClick={() => setSex('female')}
+    >
+      Female
+    </button>
+  </div>
 				<Input
 					category={'Weight'}
 					type={'number'}

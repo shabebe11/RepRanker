@@ -56,7 +56,7 @@ public class UserInputDto {
     this.deadlift = parseStringToInteger(deadlift);
   }
 
-  private Integer parseStringToInteger(String value) {
+  public Integer parseStringToInteger(String value) {
     if (value == null || value.trim().isEmpty()) {
       return 0;
     }
