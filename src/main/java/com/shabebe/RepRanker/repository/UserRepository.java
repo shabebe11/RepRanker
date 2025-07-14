@@ -1,6 +1,7 @@
 package com.shabebe.RepRanker.repository;
 
 import com.shabebe.RepRanker.entity.User;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,21 +9,16 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
   boolean existsByName(String name);
-  // These methods/queries are automatically done by JPA and found in the mySQL database?
 
-  // Seperating the user profiles based on what the user inputs
-  // List<User> findBySex(String sex);
+  List<User> findTop10BySexOrderByBenchDesc(String sex);
 
-  // List<User> findByWeight(int weightRange);
+  List<User> findTop10BySexOrderBySquatDesc(String sex);
 
-  // List<User> findBySexAndWeight(String sex, int weightRange);
+  List<User> findTop10BySexOrderByDeadliftDesc(String sex);
 
-  //   // Getting the top 5 or 10 by ordering their stats
-  //   List<User> findAllByOrderByBench();
+  List<User> findTop10BySexAndWeightBetweenOrderByBenchDesc(String sex, int weight);
 
-  //   List<User> findAllByOrderBySquat();
+  List<User> findTop10BySexAndWeightBetweenOrderBySquatDesc(String sex, int weight);
 
-  //   List<User> findAllByOrderByDeadlift();
-
-  //   List<User> findAllByOrderByTotal();
+  List<User> findTop10BySexAndWeightBetweenOrderByDeadliftDesc(String sex, int weight);
 }
