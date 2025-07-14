@@ -8,7 +8,7 @@ const App = () => {
 	const [sex, setSex] = useState('')
 	const [newNickname, setNewNickname] = useState('')
 	const [showWeight, setShowWeight] = useState(false)
-	const [newWeight, setNewWeight] = useState(0)
+	const [newWeight, setNewWeight] = useState(null)
 
 	const [showScroller, setShowScroller] = useState('')
 	const [showBench, setShowBench] = useState(false)
