@@ -24,35 +24,46 @@ public class UserInputDto {
     this.sex = sex;
   }
 
-  public int getBodyweight() {
+  public Integer getBodyweight() {
     return bodyweight;
   }
 
-  public void setBodyweight(int bodyweight) {
-    this.bodyweight = bodyweight;
+  public void setBodyweight(String bodyweight) {
+    this.bodyweight = parseStringToInteger(bodyweight);
   }
 
-  public int getBench() {
+  public Integer getBench() {
     return bench;
   }
 
-  public void setBench(int bench) {
-    this.bench = bench;
+  public void setBench(String bench) {
+    this.bench = parseStringToInteger(bench);
   }
 
-  public int getSquat() {
+  public Integer getSquat() {
     return squat;
   }
 
-  public void setSquat(int squat) {
-    this.squat = squat;
+  public void setSquat(String squat) {
+    this.squat = parseStringToInteger(squat);
   }
 
-  public int getDeadlift() {
+  public Integer getDeadlift() {
     return deadlift;
   }
 
-  public void setDeadlift(int deadlift) {
-    this.deadlift = deadlift;
+  public void setDeadlift(String deadlift) {
+    this.deadlift = parseStringToInteger(deadlift);
+  }
+
+  private Integer parseStringToInteger(String value) {
+    if (value == null || value.trim().isEmpty()) {
+      return 0;
+    }
+    try {
+      return Integer.parseInt(value.trim());
+    } catch (NumberFormatException e) {
+      return 0;
+    }
   }
 }

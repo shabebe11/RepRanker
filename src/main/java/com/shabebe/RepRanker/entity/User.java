@@ -1,6 +1,5 @@
 package com.shabebe.RepRanker.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,27 +14,17 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "name")
   private String name;
-
   private int weight;
   private String sex;
-  private float bench;
-  private float squat;
-  private float deadlift;
-  private float total;
+  private int bench;
+  private int squat;
+  private int deadlift;
+  private String benchRank;
+  private String squatRank;
+  private String deadliftRank;
 
   public User() {}
-
-  public User(String name, int weight, String sex) {
-    this.name = name;
-    this.weight = weight;
-    this.sex = sex;
-    this.bench = 0;
-    this.squat = 0;
-    this.deadlift = 0;
-    this.total = 0;
-  }
 
   public String getName() {
     return name;
@@ -61,27 +50,27 @@ public class User {
     this.sex = sex;
   }
 
-  public float getBench() {
+  public int getBench() {
     return bench;
   }
 
-  public void setBench(float bench) {
+  public void setBench(int bench) {
     this.bench = bench;
   }
 
-  public float getSquat() {
+  public int getSquat() {
     return squat;
   }
 
-  public void setSquat(float squat) {
+  public void setSquat(int squat) {
     this.squat = squat;
   }
 
-  public float getDeadlift() {
+  public int getDeadlift() {
     return deadlift;
   }
 
-  public void setDeadlift(float deadlift) {
+  public void setDeadlift(int deadlift) {
     this.deadlift = deadlift;
   }
 
@@ -93,11 +82,27 @@ public class User {
     this.id = id;
   }
 
-  public float getTotal() {
-    return total;
+  public String getBenchRank() {
+    return benchRank;
   }
 
-  public void setTotal(float total) {
-    this.total = total;
+  public void setBenchRank(String benchRank) {
+    this.benchRank = benchRank;
+  }
+
+  public String getSquatRank() {
+    return squatRank;
+  }
+
+  public void setSquatRank(String squatRank) {
+    this.squatRank = squatRank;
+  }
+
+  public String getDeadliftRank() {
+    return deadliftRank;
+  }
+
+  public void setDeadliftRank(String deadliftRank) {
+    this.deadliftRank = deadliftRank;
   }
 }

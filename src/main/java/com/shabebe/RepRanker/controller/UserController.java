@@ -3,8 +3,7 @@ package com.shabebe.RepRanker.controller;
 import com.shabebe.RepRanker.dto.UserInputDto;
 import com.shabebe.RepRanker.entity.User;
 import com.shabebe.RepRanker.repository.UserRepository;
-import com.shabebe.RepRanker.util.RanksMen;
-import com.shabebe.RepRanker.util.RanksWomen;
+import com.shabebe.RepRanker.util.LiftStandardsManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,36 +18,58 @@ public class UserController {
 
   @Autowired private UserRepository userRepository;
 
-  private RanksMen ranksMen;
-  private RanksWomen ranksWomen;
-
   @PostMapping("/submit")
-  public ResponseEntity<User> submitUser(@RequestBody UserInputDto userInput) {
+  public ResponseEntity<?> submitUser(@RequestBody UserInputDto userInput) {
+
+    // Error inputs
+    if (userInput.getName() == null || userInput.getName().isEmpty()) {
+      return new ResponseEntity<>("Name is required", HttpStatus.BAD_REQUEST);
+    }
+
+    if (userRepository.existsByName(userInput.getName())) {
+      return new ResponseEntity<>("Nickname already exists", HttpStatus.CONFLICT);
+    }
+
+    if (userInput.getSex() == null || userInput.getSex().trim().isEmpty()) {
+      return new ResponseEntity<>("Sex is required", HttpStatus.BAD_REQUEST);
+    }
+
+    if (userInput.getBodyweight() <= 0) {
+      return new ResponseEntity<>("Bodyweight must be positive", HttpStatus.BAD_REQUEST);
+    }
+
+    if (userInput.getBench() < 0 || userInput.getSquat() < 0 || userInput.getDeadlift() < 0) {
+      return new ResponseEntity<>("Lift values cannot be negative", HttpStatus.BAD_REQUEST);
+    }
 
     int weight = Math.round(userInput.getBodyweight() / 5f) * 5;
+    if ("female".equalsIgnoreCase(userInput.getSex())) {
+      weight = Math.max(40, Math.min(140, weight));
+    } else {
+      weight = Math.max(50, Math.min(140, weight));
+    }
 
     User user = new User();
     user.setName(userInput.getName());
     user.setSex(userInput.getSex());
     user.setWeight(weight);
-    user.setBench(userInput.getBench());
-    user.setSquat(userInput.getSquat());
-    user.setDeadlift(userInput.getDeadlift());
+    user.setBench(Math.round(userInput.getBench()));
+    user.setSquat(Math.round(userInput.getSquat()));
+    user.setDeadlift(Math.round(userInput.getDeadlift()));
 
-    float total = userInput.getBench() + userInput.getSquat() + userInput.getDeadlift();
-    user.setTotal(total);
+    user.setBenchRank(
+        LiftStandardsManager.classifyLift(
+            user.getSex(), "bench", user.getWeight(), user.getBench()));
+
+    user.setSquatRank(
+        LiftStandardsManager.classifyLift(
+            user.getSex(), "squat", user.getWeight(), user.getSquat()));
+
+    user.setDeadliftRank(
+        LiftStandardsManager.classifyLift(
+            user.getSex(), "deadlift", user.getWeight(), user.getDeadlift()));
 
     userRepository.save(user);
-
-    if (userInput.getSex().toLowerCase().equals("male")) {
-      String benchRank = ranksMen.classifyLift("bench", weight, userInput.getBench());
-      String squatRank = ranksMen.classifyLift("squat", weight, userInput.getSquat());
-      String deadliftRank = ranksMen.classifyLift("deadlift", weight, userInput.getDeadlift());
-    } else {
-      String benchRank = ranksWomen.classifyLift("bench", weight, userInput.getBench());
-      String squatRank = ranksWomen.classifyLift("squat", weight, userInput.getSquat());
-      String deadliftRank = ranksWomen.classifyLift("deadlift", weight, userInput.getDeadlift());
-    }
 
     return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
