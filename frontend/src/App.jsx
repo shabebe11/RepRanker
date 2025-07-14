@@ -1,14 +1,23 @@
 import { useState } from 'react'
 import axios from 'axios'
-import Input from './Input'
+import {Button, Col, Form, Row} from "react-bootstrap";
+import RangeCollection from "./components/RangeCollection";
+import './App.css'
 
 const App = () => {
 	const [sex, setSex] = useState('')
 	const [newNickname, setNewNickname] = useState('')
-	const [newWeight, setNewWeight] = useState('')
-	const [newBench, setNewBench] = useState('')
-	const [newSquat, setNewSquat] = useState('')
-	const [newDeadlift, setNewDeadlift] = useState('')
+	const [showWeight, setShowWeight] = useState(false)
+	const [newWeight, setNewWeight] = useState(0)
+
+	const [showScroller, setShowScroller] = useState('')
+	const [showBench, setShowBench] = useState(false)
+	const [showSquat, setShowSquat] = useState(false)
+	const [showDeadlift, setShowDeadlift] = useState(false)
+
+	const [newBench, setNewBench] = useState(20)
+	const [newSquat, setNewSquat] = useState(20)
+	const [newDeadlift, setNewDeadlift] = useState(20)
 
 	const handleSubmit = (event) => {
 		event.preventDefault()
@@ -20,6 +29,8 @@ const App = () => {
 			squat: newSquat,
 			deadlift: newDeadlift
 		}
+
+		console.log(submittedPerson)
 
 		axios.post('/api/users/submit', submittedPerson)
 
@@ -43,67 +54,72 @@ const App = () => {
 		setNewWeight(event.target.value)
 	}
 
-	const handleBench = (event) => {
-		setNewBench(event.target.value)
-	}
-
-	const handleSquat = (event) => {
-		setNewSquat(event.target.value)
-	}
-
-	const handleDeadlift = (event) => {
-		setNewDeadlift(event.target.value)
+	const handleScroller = (event) => {
+		let chosenScroller = event.target.value
+		setShowScroller(event.target.value)
+		if (chosenScroller === "bench") {
+			setShowBench(true)
+			setShowSquat(false)
+			setShowDeadlift(false)
+		} else if (chosenScroller === "squat") {
+			setShowBench(false)
+			setShowSquat(true)
+			setShowDeadlift(false)
+		} else if (chosenScroller === "deadlift") {
+			setShowDeadlift(true)
+			setShowBench(false)
+			setShowSquat(false)
+		} else if (chosenScroller === '') {
+			setShowBench(false)
+			setShowSquat(false)
+			setShowDeadlift(false)
+		}
 	}
 
 	return (
-		<>
-			<h1> User Form </h1>
+		<div className={"p-3 gray-background"}>
 			<form onSubmit={handleSubmit}>
-				<Input
-					category={'Nickname'}
-					type={'text'}
-					value={newNickname}
-					onChange={handleNickname}
+				<h2>
+					<Form.Label> Nickname </Form.Label>
+				</h2>
+				<input className={"mb-3"} value={newNickname} onChange={handleNickname}/>
+				<br/>
+				<Form.Label><h2>Sex</h2></Form.Label>
+				<Form.Select style={{border: '1px solid black'}}
+							 value={sex}
+							 onChange={handleSex}
+				>
+					<option value="">--Select--</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+				</Form.Select>
+				<br/>
+
+				<h2> Lift </h2>
+				<Form.Check
+					type={"checkbox"}
+					label={"Weighted Ranking"}
+					onChange={(e) => setShowWeight(e.target.checked)} />
+				{showWeight && (
+					<>
+						<p className={"mt-3 mb-0"}> Your weight: </p>
+						<input type="number" value={newWeight} onChange={handleWeight} className={"mb-3"}/>
+					</>
+				)}
+				<Form.Select value={showScroller} onChange={handleScroller}>
+					<option value="">--Select--</option>
+					<option value="bench">Bench</option>
+					<option value="squat">Squat</option>
+					<option value="deadlift">Deadlift</option>
+				</Form.Select>
+				<RangeCollection showBench={showBench} showSquat={showSquat} showDeadlift={showDeadlift}
+								 newBench={newBench} setNewBench={setNewBench}
+								 newSquat={newSquat} setNewSquat={setNewSquat}
+								 newDeadlift={newDeadlift} setNewDeadlift={setNewDeadlift}
 				/>
-				<p>
-					<label htmlFor="sex"> Sex </label>
-					<select
-						id="sex"
-						value={sex}
-						onChange={handleSex}
-					>
-						<option value="">--Select--</option>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
-					</select>
-				</p>
-				<Input
-					category={'Weight'}
-					type={'number'}
-					value={newWeight}
-					onChange={handleWeight}
-				/>
-				<Input
-					category={'Bench'}
-					type={'number'}
-					value={newBench}
-					onChange={handleBench}
-				/>
-				<Input
-					category={'Squat'}
-					type={'number'}
-					value={newSquat}
-					onChange={handleSquat}
-				/>
-				<Input
-					category={'Deadlift'}
-					type={'number'}
-					value={newDeadlift}
-					onChange={handleDeadlift}
-				/>
-				<button type="submit"> Submit </button>
+				<Button className={"mt-2"} type="submit"> Submit </Button>
 			</form>
-		</>
+		</div>
 	)
 }
 
