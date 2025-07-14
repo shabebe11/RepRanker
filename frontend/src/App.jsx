@@ -18,7 +18,7 @@ const App = () => {
 			weight: newWeight,
 		}
 
-		axios.post('/api/users/submit', submittedPerson)
+		axios.post('http://localhost:8080/api/users/submit', submittedPerson)
 
 		setSex('')
 		setNewNickname('')
