@@ -16,9 +16,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   List<User> findTop10BySexOrderByDeadliftDesc(String sex);
 
-  List<User> findTop10BySexAndWeightBetweenOrderByBenchDesc(String sex, int weight);
+  List<User> findTop10BySexAndWeightOrderByBenchDesc(String sex, int weight);
 
-  List<User> findTop10BySexAndWeightBetweenOrderBySquatDesc(String sex, int weight);
+  List<User> findTop10BySexAndWeightOrderBySquatDesc(String sex, int weight);
 
-  List<User> findTop10BySexAndWeightBetweenOrderByDeadliftDesc(String sex, int weight);
+  List<User> findTop10BySexAndWeightOrderByDeadliftDesc(String sex, int weight);
 }

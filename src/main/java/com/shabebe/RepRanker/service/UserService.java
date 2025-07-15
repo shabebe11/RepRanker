@@ -14,13 +14,13 @@ public class UserService {
   public List<User> getUsersByLiftAndSexAndWeight(String lift, String sex, int actualWeight) {
     switch (lift) {
       case "bench":
-        return userRepository.findTop10BySexAndWeightBetweenOrderByBenchDesc(sex, actualWeight);
+        return userRepository.findTop10BySexAndWeightOrderByBenchDesc(sex, actualWeight);
 
       case "squat":
-        return userRepository.findTop10BySexAndWeightBetweenOrderBySquatDesc(sex, actualWeight);
+        return userRepository.findTop10BySexAndWeightOrderBySquatDesc(sex, actualWeight);
 
       case "deadlift":
-        return userRepository.findTop10BySexAndWeightBetweenOrderByDeadliftDesc(sex, actualWeight);
+        return userRepository.findTop10BySexAndWeightOrderByDeadliftDesc(sex, actualWeight);
 
       default:
         return new ArrayList<>();

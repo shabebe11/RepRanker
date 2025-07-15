@@ -1,5 +1,5 @@
 import {Card, Form} from "react-bootstrap";
-import './App.css'
+import '../styles/App.css'
 
 const RangeInput = ({ category, value, onChange, min, max }) => {
 	return (

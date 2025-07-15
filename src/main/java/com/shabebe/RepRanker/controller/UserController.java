@@ -79,8 +79,8 @@ public class UserController {
     return new ResponseEntity<>(user, HttpStatus.CREATED);
   }
 
-  @GetMapping
-  public List<User> getPlayers(
+  @GetMapping("/leaderboard")
+  public List<User> getUsers(
       @RequestParam(required = false) String lift,
       @RequestParam(required = false) String sex,
       @RequestParam(required = false) String weight) {

@@ -1,5 +1,5 @@
 import {Col, Row} from "react-bootstrap";
-import RangeInput from "../RangeInput";
+import RangeInput from "./RangeInput";
 
 const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                              setNewBench, newSquat, setNewSquat, newDeadlift, setNewDeadlift}) => {
