@@ -17,7 +17,7 @@ const SubmitForm = () => {
   const [newSquat, setNewSquat] = useState(0);
   const [newDeadlift, setNewDeadlift] = useState(0);
 
-  const [isSubmitted, setIsSubmitted] = useState(true);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedPerson, setSubmittedPerson] = useState({});
 
   const handleSubmit = (event) => {
@@ -37,7 +37,7 @@ const SubmitForm = () => {
 
     setSubmittedPerson(personToSubmit)
 
-    // axios.post('http://localhost:8080/api/users/submit', personToSubmit);
+    axios.post('http://localhost:8080/api/users/submit', personToSubmit);
 
     // Reset form
     setSex('');
@@ -50,15 +50,15 @@ const SubmitForm = () => {
 
   if (isSubmitted) {
     return(
-        <div style={{border: "1px solid red"}} >
-
+        <div>
+          <br/><br/><br/><br/>
+          Under construction
         </div>
     )
   } else {
     return (
         <div className="submit-form-container">
-          <h1>!! Find Your Rank !!</h1>
-
+          <h1> Find Your Rank </h1>
           <form onSubmit={handleSubmit}>
             <div className="form-section">
               <h2><Form.Label>Nickname</Form.Label></h2>
@@ -68,7 +68,6 @@ const SubmitForm = () => {
                   onChange={(e) => setNewNickname(e.target.value)}
               />
             </div>
-
             <div className="form-section">
               <h2><Form.Label>Your Weight</Form.Label></h2>
               <Form.Control
