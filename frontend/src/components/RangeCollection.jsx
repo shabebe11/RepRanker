@@ -26,7 +26,7 @@ const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                             value={newBench}
                             onChange={handleBench}
                             min={5}
-                            max={600}
+                            max={250}
                         />
                     </Col>
                 </Row>
@@ -39,7 +39,7 @@ const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                             value={newSquat}
                             onChange={handleSquat}
                             min={5}
-                            max={600}
+                            max={350}
                         />
                     </Col>
                 </Row>
@@ -52,7 +52,7 @@ const RangeCollection = ({ showBench, showSquat, showDeadlift, newBench,
                             value={newDeadlift}
                             onChange={handleDeadlift}
                             min={5}
-                            max={600}
+                            max={350}
                         />
                     </Col>
                 </Row>

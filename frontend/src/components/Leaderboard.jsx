@@ -30,9 +30,47 @@ const Leaderboard = () => {
 
     if (isSubmitted) {
         return (
-            <div>
-                <br/><br/><br/><br/>
-                Under construction
+            <div className="leaderboard-results">
+                <h2 className="text-center mb-4">
+                    Top 10 {sex} {lift} {weight ? `at ${weight}kg` : ''}
+                </h2>
+                
+                {leaderboard.length > 0 ? (
+                    <Table striped bordered hover responsive>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Nickname</th>
+                                <th>Weight (kg)</th>
+                                <th>{lift.charAt(0).toUpperCase() + lift.slice(1)} (kg)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {leaderboard.map((user, index) => (
+                                <tr key={user.id || index}>
+                                    <td>{index + 1}</td>
+                                    <td>{user.name}</td>
+                                    <td>{user.weight}</td>
+                                    <td>{user[lift]}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                ) : (
+                    <p className="text-center">No results found for these criteria.</p>
+                )}
+                
+                <div className="text-center mt-4">
+                    <Button variant="secondary" onClick={() => {
+                        setLift('');
+                        setSex('');
+                        setWeight('');
+                        setLeaderboard([]);
+                        setIsSubmitted(false);
+                    }}>
+                        New Search
+                    </Button>
+                </div>
             </div>
         )
     }

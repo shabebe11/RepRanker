@@ -356,88 +356,196 @@ body {
     color: #555 !important;
 }
 
-/* 1) Make the cards themselves dark */
-.range-collection .card {
-  background-color: #2d2d2d !important;
-  border: 1px solid #444     !important;
+/* UPDATED: RangeCollection cards - Dark theme styling with stronger selectors */
+.submit-form-container .range-collection .card,
+.range-collection .card,
+.card {
+    background-color: #2d2d2d !important;
+    border: 1px solid #444 !important;
+    border-radius: 6px !important;
+    color: #ffffff !important;
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
 }
 
-/* 2) Card titles & any labels/text inside them */
+.submit-form-container .range-collection .card-body,
+.range-collection .card-body,
+.card-body {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+    padding: 0.5rem !important;
+}
+
+.submit-form-container .range-collection .card-title,
 .range-collection .card-title,
+.card-title {
+    color: #e0e0e0 !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    text-align: center !important;
+}
+
+.submit-form-container .range-collection .form-label,
+.submit-form-container .range-collection .card-text,
+.submit-form-container .range-collection .form-text,
 .range-collection .form-label,
 .range-collection .card-text,
 .range-collection .form-text {
-  color: #e0e0e0 !important;
+    color: #d1d1d1 !important;
+    font-size: 0.9rem !important;
 }
 
-/* 3) The actual <input type="range" class="form-range"> */
-.range-collection .form-range {
-  width: 100%;
-  background: transparent;
-  margin: 0.5rem 0;
+/* Range slider styling with stronger selectors */
+.submit-form-container .range-collection .form-range,
+.range-collection .form-range,
+.form-range {
+    width: 100% !important;
+    background: #555 !important;
+    margin: 0.5rem 0 !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+    outline: none !important;
 }
 
-.range-collection .form-range:focus {
-  outline: none;
+.submit-form-container .range-collection .form-range:focus,
+.range-collection .form-range:focus,
+.form-range:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.25) !important;
 }
 
-/* 4) WebKit track and thumb */
-.range-collection .form-range::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #555;
-  border-radius: 3px;
+/* WebKit (Chrome, Safari) slider styles with stronger selectors */
+.submit-form-container .range-collection .form-range::-webkit-slider-runnable-track,
+.range-collection .form-range::-webkit-slider-runnable-track,
+.form-range::-webkit-slider-runnable-track {
+    height: 6px !important;
+    background: #555 !important;
+    border-radius: 3px !important;
+    border: none !important;
 }
 
-.range-collection .form-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
-  background: #888;
-  border-radius: 50%;
-  margin-top: -4px;
-  cursor: pointer;
-  transition: background 0.2s ease;
+.submit-form-container .range-collection .form-range::-webkit-slider-thumb,
+.range-collection .form-range::-webkit-slider-thumb,
+.form-range::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    background: #888 !important;
+    border-radius: 50% !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+    margin-top: -6px !important;
 }
 
-.range-collection .form-range::-webkit-slider-thumb:hover {
-  background: #aaa;
+.submit-form-container .range-collection .form-range::-webkit-slider-thumb:hover,
+.range-collection .form-range::-webkit-slider-thumb:hover,
+.form-range::-webkit-slider-thumb:hover {
+    background: #aaa !important;
 }
 
-/* 5) Firefox track & thumb */
-.range-collection .form-range::-moz-range-track {
-  height: 6px;
-  background: #555;
-  border-radius: 3px;
+.submit-form-container .range-collection .form-range::-webkit-slider-thumb:active,
+.range-collection .form-range::-webkit-slider-thumb:active,
+.form-range::-webkit-slider-thumb:active {
+    background: #bbb !important;
 }
 
-.range-collection .form-range::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: #888;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
+/* Firefox slider styles with stronger selectors */
+.submit-form-container .range-collection .form-range::-moz-range-track,
+.range-collection .form-range::-moz-range-track,
+.form-range::-moz-range-track {
+    height: 6px !important;
+    background: #555 !important;
+    border-radius: 3px !important;
+    border: none !important;
 }
 
-/* 6) IE/Edge */
-.range-collection .form-range::-ms-track {
-  height: 6px;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
+.submit-form-container .range-collection .form-range::-moz-range-thumb,
+.range-collection .form-range::-moz-range-thumb,
+.form-range::-moz-range-thumb {
+    width: 18px !important;
+    height: 18px !important;
+    background: #888 !important;
+    border-radius: 50% !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
 }
 
+.submit-form-container .range-collection .form-range::-moz-range-thumb:hover,
+.range-collection .form-range::-moz-range-thumb:hover,
+.form-range::-moz-range-thumb:hover {
+    background: #aaa !important;
+}
+
+/* IE/Edge slider styles with stronger selectors */
+.submit-form-container .range-collection .form-range::-ms-track,
+.range-collection .form-range::-ms-track,
+.form-range::-ms-track {
+    height: 6px !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    color: transparent !important;
+}
+
+.submit-form-container .range-collection .form-range::-ms-fill-lower,
+.submit-form-container .range-collection .form-range::-ms-fill-upper,
 .range-collection .form-range::-ms-fill-lower,
-.range-collection .form-range::-ms-fill-upper {
-  background: #555;
-  border-radius: 3px;
+.range-collection .form-range::-ms-fill-upper,
+.form-range::-ms-fill-lower,
+.form-range::-ms-fill-upper {
+    background: #555 !important;
+    border-radius: 3px !important;
 }
 
-.range-collection .form-range::-ms-thumb {
-  width: 14px;
-  height: 14px;
-  background: #888;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
+.submit-form-container .range-collection .form-range::-ms-thumb,
+.range-collection .form-range::-ms-thumb,
+.form-range::-ms-thumb {
+    width: 18px !important;
+    height: 18px !important;
+    background: #888 !important;
+    border-radius: 50% !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin-top: 0 !important;
+}
+
+/* Additional text styling for range labels with stronger selectors */
+.submit-form-container .range-collection .small,
+.range-collection .small,
+.small {
+    color: #aaa !important;
+    font-size: 0.8rem !important;
+}
+
+/* Ensure any additional elements in the cards are styled properly */
+.submit-form-container .range-collection .card *,
+.range-collection .card *,
+.card * {
+    color: inherit !important;
+}
+
+.submit-form-container .range-collection .card .text-muted,
+.range-collection .card .text-muted,
+.card .text-muted {
+    color: #aaa !important;
+}
+
+/* Additional overrides for Bootstrap card components */
+.submit-form-container .card-header,
+.card-header {
+    background-color: #333 !important;
+    border-bottom: 1px solid #444 !important;
+    color: #ffffff !important;
+}
+
+.submit-form-container .card-footer,
+.card-footer {
+    background-color: #333 !important;
+    border-top: 1px solid #444 !important;
+    color: #ffffff !important;
 }

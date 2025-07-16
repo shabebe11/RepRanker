@@ -6,6 +6,7 @@ import Leaderboard from './components/Leaderboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
+  
   return (
     <Router>
       <Navbar />
