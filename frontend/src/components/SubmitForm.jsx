@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import RangeCollection from "./RangeCollection";
 import "../styles/SubmitForm.css";
-import "../styles/SubmitRank.css";
-import bronzeRank from '../images/bronze-removebg-preview.png';
-import silverRank from '../images/silver-removebg-preview.png';
-import goldRank from '../images/gold-removebg-preview.png';
-import platinumRank from '../images/platinum-removebg-preview.png';
-import diamondRank from '../images/diamond-removebg-preview.png';
+import bronzeRank from '../images/bronze-removebg-preview.png'
+import silverRank from '../images/silver-removebg-preview.png'
+import goldRank from '../images/gold-removebg-preview.png'
+import platinumRank from '../images/platinum-removebg-preview.png'
+import diamondRank  from '../images/diamond-removebg-preview.png'
 
 const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
   const [sex, setSex] = useState('');
@@ -77,10 +76,10 @@ const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
 
   const handleDelete = () => {
     if (window.confirm(`Delete your recent submission?`)) {
-      axios.delete(`http://reprankedbackend-env.eba-mcbgdgvt.ap-southeast-2.elasticbeanstalk.com/api/users/delete/${submittedPerson.id}`);
-      setIsSubmitted(false);
+      axios.delete(`http://reprankedbackend-env.eba-mcbgdgvt.ap-southeast-2.elasticbeanstalk.com/api/users/delete/${submittedPerson.id}`)
+      setIsSubmitted(!isSubmitted)
     }
-  };
+  }
 
   if (isSubmitted) {
     return (
@@ -89,13 +88,18 @@ const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
           <Card key={lift} className="submitted-card">
             <Card.Img
               variant="top"
+              // fix: use proper template‐literal inside the bracket
               src={handleSrc(submittedPerson[`${lift}Rank`])}
               className="rank-img"
             />
             <Card.Body>
-              <Card.Title as="h3">{lift.charAt(0).toUpperCase() + lift.slice(1)}</Card.Title>
+              <Card.Title as="h3">
+                {lift.charAt(0).toUpperCase() + lift.slice(1)}
+              </Card.Title>
               <Card.Text as="h4">
-                You are {submittedPerson[`${lift}Rank`]} in {lift.charAt(0).toUpperCase() + lift.slice(1)}
+                {/* fix: same interpolation here */}
+                You are {submittedPerson[`${lift}Rank`]} in{" "}
+                {lift.charAt(0).toUpperCase() + lift.slice(1)}
               </Card.Text>
             </Card.Body>
           </Card>
@@ -127,8 +131,7 @@ const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
             <h2><Form.Label>Your Weight</Form.Label></h2>
             <Form.Control
               type="number"
-              placeholder="Enter a number"
-              value={newWeight}
+              placeholder="Enter a weight"
               onChange={e => setNewWeight(e.target.value)}
             />
           </div>
@@ -172,67 +175,6 @@ const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
               />
             </div>
           </div>
-        <div className="submit-form-container">
-          <h1> Find Your Rank </h1>
-          <form onSubmit={handleSubmit}>
-            <div className="form-section">
-              <h2><Form.Label>Nickname</Form.Label></h2>
-              <Form.Control
-                  placeholder="Enter a name"
-                  value={newNickname}
-                  onChange={(e) => setNewNickname(e.target.value)}
-              />
-            </div>
-            <div className="form-section">
-              <h2><Form.Label>Your Weight</Form.Label></h2>
-              <Form.Control
-                  type="number"
-                  placeholder="Enter a weight"
-                  onChange={(e) => setNewWeight(e.target.value)}
-              />
-            </div>
-
-            <div className="form-section">
-              <h2><Form.Label>Sex</Form.Label></h2>
-              <div className="radio-group">
-                <Form.Check
-                    type="radio"
-                    label="Male"
-                    checked={sex === "male"}
-                    onChange={(e) => setSex("male")}
-                />
-                <Form.Check
-                    type="radio"
-                    label="Female"
-                    checked={sex === "female"}
-                    onChange={(e) => setSex("female")}
-                />
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h2><Form.Label> Lifts</Form.Label></h2>
-              <div className="checkbox-group">
-                <Form.Check
-                    type="checkbox"
-                    label="Bench"
-                    checked={showBench}
-                    onChange={(e) => setShowBench(!showBench)}
-                />
-                <Form.Check
-                    type="checkbox"
-                    label="Squat"
-                    checked={showSquat}
-                    onChange={(e) => setShowSquat(!showSquat)}
-                />
-                <Form.Check
-                    type="checkbox"
-                    label="Deadlift"
-                    checked={showDeadlift}
-                    onChange={(e) => setShowDeadlift(!showDeadlift)}
-                />
-              </div>
-            </div>
 
           <RangeCollection
             showBench={showBench}
