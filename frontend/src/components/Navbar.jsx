@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ isSubmitted, setIsSubmitted }) => {
   return (
     <nav className="custom-navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-          <Link to="/" className="brand-link">
+          <Link to="/" className="brand-link" onClick={() => setIsSubmitted(!isSubmitted)}>
             RepRanker
           </Link>
         </div>

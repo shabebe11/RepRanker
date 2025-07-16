@@ -14,13 +14,13 @@ const Leaderboard = () => {
     const handleSubmit = (e) => {
         event.preventDefault()
         setIsSubmitted(true)
-        axios.get('http://localhost:8080/api/users/leaderboard',
+        axios.get('http://reprankedbackend-env.eba-mcbgdgvt.ap-southeast-2.elasticbeanstalk.com/api/users/leaderboard',
             {
                 params:
                     {
                         lift: lift,
                         sex: sex,
-                        weight: weight ? weight : null
+                        weight: weight !== '' ? weight : null
                     }
             }).then((response) => {
                 setLeaderboard(response.data)
@@ -32,7 +32,7 @@ const Leaderboard = () => {
         return (
             <div className="leaderboard-results">
                 <h2 className="text-center mb-4">
-                    Top 10 {sex} {lift} {weight ? `at ${weight}kg` : ''}
+                    Top 10 {sex} {lift} {weight !== '' ? `at ${weight}kg` : ''}
                 </h2>
                 
                 {leaderboard.length > 0 ? (

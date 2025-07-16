@@ -1,13 +1,15 @@
 import {Card, Form} from "react-bootstrap";
 import '../styles/App.css'
+import '../styles/SubmitForm.css'
 
 const RangeInput = ({ category, value, onChange, min, max }) => {
 	return (
-		<Card style={{border: "1px solid"}} className={"m-3"}>
+		<Card className={"m-3 custom-card"}>
 			<Card.Body>
 				<h3>{category}</h3>
-				<div> {`Entered ${value} kg`} </div>
+				<div className={"text-white"}> {`Entered ${value} kg`} </div>
 				<Form.Range
+					className={"custom-range"}
 					min={min}
 					max={max}
 					step={5}

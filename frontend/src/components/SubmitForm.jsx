@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Form } from "react-bootstrap";
+import {Button, Card, Col, Form, Row} from "react-bootstrap";
 import RangeCollection from "./RangeCollection";
 import "../styles/SubmitForm.css";
+import "../styles/SubmitRank.css"
+import bronzeRank from '../images/bronze-removebg-preview.png'
+import silverRank from '../images/silver-removebg-preview.png'
+import goldRank from '../images/gold-removebg-preview.png'
+import platinumRank from '../images/platinum-removebg-preview.png'
+import diamondRank  from '../images/diamond-removebg-preview.png'
 
-const SubmitForm = () => {
+const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
   const [sex, setSex] = useState('');
   const [newNickname, setNewNickname] = useState('');
   const [newWeight, setNewWeight] = useState(0);
@@ -17,7 +23,6 @@ const SubmitForm = () => {
   const [newSquat, setNewSquat] = useState(0);
   const [newDeadlift, setNewDeadlift] = useState(0);
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedPerson, setSubmittedPerson] = useState({});
 
   const handleSubmit = (event) => {
@@ -30,14 +35,16 @@ const SubmitForm = () => {
       nickname: newNickname,
       sex: sex,
       weight: newWeight,
-      bench: newBench,
-      squat: newSquat,
-      deadlift: newDeadlift
+      ...(showBench ? {bench: newBench} : {bench: 0}),
+      ...(showSquat ? {squat: newSquat} : {squat: 0}),
+      ...(showDeadlift ? {deadlift: newDeadlift} : {deadlift: 0})
     };
 
-    setSubmittedPerson(personToSubmit)
-
-    axios.post('http://localhost:8080/api/users/submit', personToSubmit);
+    axios.post('http://reprankedbackend-env.eba-mcbgdgvt.ap-southeast-2.elasticbeanstalk.com/api/users/submit', personToSubmit).then(
+        response => {
+          setSubmittedPerson(response.data)
+        }
+    )
 
     // Reset form
     setSex('');
@@ -48,12 +55,70 @@ const SubmitForm = () => {
     setNewDeadlift(0);
   };
 
+  const handleSrc = (rank) => {
+    if (rank === "bronze") {
+      return bronzeRank
+    } else if (rank === "silver") {
+      return silverRank
+    } else if (rank === "gold") {
+      return goldRank
+    } else if (rank === "platinum") {
+      return platinumRank
+    } else if (rank === "diamond") {
+      return diamondRank
+    } else if (rank === "untrained") {
+      return ""
+    }
+  }
+
+  const handleDelete = () => {
+    if (window.confirm(`Delete your recent submission?`)) {
+      axios.delete(`http://reprankedbackend-env.eba-mcbgdgvt.ap-southeast-2.elasticbeanstalk.com/api/users/delete/${submittedPerson.id}`)
+      setIsSubmitted(!isSubmitted)
+    }
+  }
+
   if (isSubmitted) {
     return(
-        <div>
-          <br/><br/><br/><br/>
-          Under construction
-        </div>
+        <>
+          <Row style={{marginTop: '100px'}} className={"p-3"}>
+            <Col lg={4}>
+              <Card>
+                <Card.Img variant="top" src={handleSrc(submittedPerson.benchRank)} style ={
+                  { width: 'auto', height: 'auto'}
+                }
+                />
+                <Card.Body>
+                  <Card.Title> <h1> Bench </h1> </Card.Title>
+                  <Card.Text className={"mt-4"}> <h2> You are {submittedPerson.benchRank} in Bench </h2> </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col lg={4}>
+              <Card>
+                <Card.Img variant="top" src={handleSrc(submittedPerson.squatRank)} style ={
+                  { width: 'auto', height: 'auto'}
+                }/>
+                <Card.Body>
+                  <Card.Title> <h1> Squat </h1> </Card.Title>
+                  <Card.Text className={"mt-4"}> <h2> You are {submittedPerson.squatRank} in Squat </h2> </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col lg={4}>
+              <Card>
+                <Card.Img variant="top" src={handleSrc(submittedPerson.deadliftRank)} style ={
+                  { width: 'auto', height: 'auto'}
+                }/>
+                <Card.Body>
+                  <Card.Title> <h1> Deadlift </h1> </Card.Title>
+                  <Card.Text className={"mt-4"}> <h2> You are {submittedPerson.deadliftRank} in Deadlift </h2> </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+          <Button onClick={handleDelete}> Delete your submission </Button>
+        </>
     )
   } else {
     return (
@@ -97,7 +162,7 @@ const SubmitForm = () => {
             </div>
 
             <div className="form-section">
-              <h2><Form.Label>Preferred Lifts</Form.Label></h2>
+              <h2><Form.Label> Lifts</Form.Label></h2>
               <div className="checkbox-group">
                 <Form.Check
                     type="checkbox"
