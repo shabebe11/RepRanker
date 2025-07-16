@@ -9,7 +9,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,6 +92,22 @@ public class UserController {
       return userService.getUsersByLiftAndSexAndWeight(lift, sex, actualWeight);
     } else {
       return userService.getUsersByLiftAndSex(lift, sex);
+    }
+  }
+
+  @DeleteMapping("/delete/{id}")
+  public ResponseEntity<String> deleteUser(@PathVariable String id) {
+    try {
+      Long userId = Long.parseLong(id);
+      if (!userRepository.existsById(userId)) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+      }
+      userRepository.deleteById(userId);
+      return ResponseEntity.ok("Player successfully deleted");
+    } catch (NumberFormatException e) {
+      return ResponseEntity.badRequest().body("Invalid ID format");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Something went wrong");
     }
   }
 }
