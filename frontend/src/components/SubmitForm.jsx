@@ -137,8 +137,7 @@ const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
               <h2><Form.Label>Your Weight</Form.Label></h2>
               <Form.Control
                   type="number"
-                  placeholder="Enter a number"
-                  value={newWeight}
+                  placeholder="Enter a weight"
                   onChange={(e) => setNewWeight(e.target.value)}
               />
             </div>
