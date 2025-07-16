@@ -1,8 +1,5 @@
-/* SubmitForm.css - Submit form specific styles */
-
-/* Global body override for this component */
 body {
-    background-color: #1a1a1a !important; /* Darker grey */
+    background-color: #1a1a1a !important; 
     color: #ffffff !important;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
     margin: 0 !important;
@@ -10,20 +7,18 @@ body {
     min-height: 100vh !important;
 }
 
-/* Main container for the submit form */
 .submit-form-container {
-    background-color: #1a1a1a !important; /* Darker grey */
+    background-color: #1a1a1a !important; 
     color: #ffffff !important;
     min-height: 100vh !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     padding: 2rem !important;
-    margin-top: 60px !important; /* Account for fixed navbar */
+    margin-top: 60px !important; 
     box-sizing: border-box !important;
 }
 
-/* Center the form content */
 .submit-form-container form {
     width: 100% !important;
     max-width: 400px !important;
@@ -34,7 +29,6 @@ body {
     background-color: transparent !important;
 }
 
-/* Title styling */
 .submit-form-container h1 {
     font-size: 2.5rem !important;
     margin-bottom: 1rem !important;
@@ -43,7 +37,6 @@ body {
     font-weight: 700 !important;
 }
 
-/* Form sections */
 .form-section {
     display: flex !important;
     flex-direction: column !important;
@@ -53,7 +46,6 @@ body {
     margin-bottom: 0 !important;
 }
 
-/* Label styling */
 .submit-form-container h2 {
     font-size: 1.3rem !important;
     margin-bottom: 0.75rem !important;
@@ -62,7 +54,6 @@ body {
     font-weight: 600 !important;
 }
 
-/* Input field styling */
 .submit-form-container .form-control {
     width: 100% !important;
     max-width: 300px !important;
@@ -80,8 +71,8 @@ body {
 
 .submit-form-container .form-control:focus {
     outline: none !important;
-    border-color: #666 !important; /* Changed to grey */
-    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.25) !important; /* Grey shadow */
+    border-color: #666 !important;
+    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.25) !important; 
     background-color: #404040 !important;
     color: #ffffff !important;
 }
@@ -91,7 +82,6 @@ body {
     text-align: center !important;
 }
 
-/* Radio button and checkbox styling */
 .radio-group,
 .checkbox-group {
     display: flex !important;
@@ -120,12 +110,12 @@ body {
 }
 
 .submit-form-container .form-check-input:checked {
-    background-color: #666 !important; /* Changed to grey */
-    border-color: #666 !important; /* Changed to grey */
+    background-color: #666 !important; 
+    border-color: #666 !important; 
 }
 
 .submit-form-container .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem rgba(102, 102, 102, 0.25) !important; /* Grey shadow */
+    box-shadow: 0 0 0 0.25rem rgba(102, 102, 102, 0.25) !important; 
 }
 
 .submit-form-container .form-check-label {
@@ -136,9 +126,8 @@ body {
     font-weight: 500 !important;
 }
 
-/* Submit button styling */
 .submit-form-container .btn {
-    background-color: #333 !important; /* Dark grey */
+    background-color: #333 !important; 
     color: #ffffff !important;
     border: none !important;
     padding: 0.75rem 2.5rem !important;
@@ -153,7 +142,7 @@ body {
 }
 
 .submit-form-container .btn:hover {
-    background-color: #444 !important; /* Lighter grey */
+    background-color: #444 !important; 
     transform: translateY(-1px) !important;
 }
 
@@ -162,10 +151,9 @@ body {
 }
 
 .submit-form-container .btn:focus {
-    box-shadow: 0 0 0 0.25rem rgba(85, 85, 85, 0.25) !important; /* Grey shadow */
+    box-shadow: 0 0 0 0.25rem rgba(85, 85, 85, 0.25) !important; 
 }
 
-/* Override any Bootstrap interference */
 .submit-form-container .row {
     margin: 0 !important;
     width: 100% !important;
@@ -250,13 +238,11 @@ body {
     background-color: #666;
 }
 
-/* Firefox scrollbar */
 * {
     scrollbar-width: thin;
     scrollbar-color: #555 #2d2d2d;
 }
 
-/* Main container scroll adjustments */
 .submit-form-container {
     scrollbar-width: thin !important;
     scrollbar-color: #555 #2d2d2d !important;
@@ -264,7 +250,6 @@ body {
     overflow-y: auto !important;
 }
 
-/* Form sections scroll adjustments */
 .form-section {
     scrollbar-width: thin !important;
     scrollbar-color: #555 #2d2d2d !important;
@@ -272,7 +257,6 @@ body {
     margin-bottom: 15px !important;
 }
 
-/* Radio and checkbox groups scroll */
 .radio-group, 
 .checkbox-group {
     scrollbar-width: thin !important;
@@ -282,7 +266,6 @@ body {
     padding: 5px !important;
 }
 
-/* RangeCollection component scroll */
 .range-collection {
     scrollbar-width: thin !important;
     scrollbar-color: #555 #2d2d2d !important;
@@ -300,7 +283,6 @@ body {
     text-align: center !important;
 }
 
-/* Lift entry display */
 .lift-entry {
     background-color: #2d2d2d !important;
     border: 1px solid #444 !important;
@@ -324,7 +306,6 @@ body {
     margin-left: 0.3rem !important;
 }
 
-/* Divider line */
 .lift-divider {
     border: none !important;
     height: 1px !important;
@@ -333,7 +314,6 @@ body {
     width: 80% !important;
 }
 
-/* Preferred lifts list */
 .preferred-lifts-list {
     list-style-type: none !important;
     padding: 0 !important;
@@ -356,7 +336,6 @@ body {
     color: #555 !important;
 }
 
-/* UPDATED: RangeCollection cards - Dark theme styling with stronger selectors */
 .submit-form-container .range-collection .card,
 .range-collection .card,
 .card {
@@ -396,7 +375,6 @@ body {
     font-size: 0.9rem !important;
 }
 
-/* Range slider styling with stronger selectors */
 .submit-form-container .range-collection .form-range,
 .range-collection .form-range,
 .form-range {
@@ -417,7 +395,6 @@ body {
     box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.25) !important;
 }
 
-/* WebKit (Chrome, Safari) slider styles with stronger selectors */
 .submit-form-container .range-collection .form-range::-webkit-slider-runnable-track,
 .range-collection .form-range::-webkit-slider-runnable-track,
 .form-range::-webkit-slider-runnable-track {
@@ -514,7 +491,6 @@ body {
     margin-top: 0 !important;
 }
 
-/* Additional text styling for range labels with stronger selectors */
 .submit-form-container .range-collection .small,
 .range-collection .small,
 .small {
@@ -522,7 +498,6 @@ body {
     font-size: 0.8rem !important;
 }
 
-/* Ensure any additional elements in the cards are styled properly */
 .submit-form-container .range-collection .card *,
 .range-collection .card *,
 .card * {
@@ -535,7 +510,6 @@ body {
     color: #aaa !important;
 }
 
-/* Additional overrides for Bootstrap card components */
 .submit-form-container .card-header,
 .card-header {
     background-color: #333 !important;
@@ -548,4 +522,139 @@ body {
     background-color: #333 !important;
     border-top: 1px solid #444 !important;
     color: #ffffff !important;
+}
+
+.submitted-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;           
+  justify-content: center;          
+  width: 100%;
+  padding: 3rem 0;                  
+  margin-top: 60px;                   
+  min-height: calc(100vh - 60px);     
+  box-sizing: border-box;
+  gap: 2.5rem;
+}
+
+.submitted-card {
+  width: 95%;
+  max-width: 400px;
+  background-color: #2d2d2d !important;
+  border: 1px solid #444 !important;
+  padding: 1.5rem;  
+}
+
+.rank-img {
+  max-width: 150px;
+  margin: 1.5rem auto 0;
+}
+
+.submitted-card .card-title {
+  font-size: 1.6rem !important;
+  text-align: center;
+}
+
+.submitted-card .card-text {
+  font-size: 1.2rem !important;
+  text-align: center;
+}
+
+.delete-btn {
+    background-color: #333 !important;      
+    color: #ffffff !important;
+    border: none !important;
+    padding: 0.75rem 2.5rem !important;
+    border-radius: 6px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 1rem !important;
+    min-width: 140px !important;
+    text-align: center !important;
+}
+
+.delete-btn:hover {
+    background-color: #444 !important;     
+    transform: translateY(-1px) !important;
+}
+
+.delete-btn:active {
+    transform: translateY(0) !important;
+}
+
+.delete-btn:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 0.25rem rgba(85, 85, 85, 0.25) !important;
+}
+
+.error-message {
+  color: #e74c3c;        
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+
+.submit-form-container form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    background-color: transparent !important;
+}
+
+.submit-form-container form > div:nth-child(1) {
+    order: 1 !important;
+}
+
+.submit-form-container form > div:nth-child(2) { 
+    order: 2 !important;
+}
+
+.submit-form-container form > div:nth-child(3) { 
+    order: 3 !important;
+}
+
+.submit-form-container form > div:nth-child(4) { 
+    order: 4 !important;
+}
+
+.submit-form-container form > div:not(.form-section):not(.error-message),
+.submit-form-container form > .range-collection,
+.submit-form-container form > div[class*="range"] {
+    order: 5 !important;
+}
+
+.submit-form-container form > .error-message,
+.submit-form-container form > div[class*="error"] {
+    order: 6 !important;
+}
+
+.submit-form-container form > button,
+.submit-form-container form > button[type="submit"] {
+    order: 7 !important;
+}
+
+.submit-form-container .range-collection {
+    order: 5 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.submit-form-container .range-collection > * {
+    order: initial !important;
+}
+
+.submit-form-container form > .card {
+    order: 5 !important;
+}
+
+.submit-form-container {
+  max-height: none !important;
+  overflow-y: visible !important;
 }

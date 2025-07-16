@@ -82,16 +82,25 @@ public class UserController {
   }
 
   @GetMapping("/leaderboard")
-  public List<User> getUsers(
+  public ResponseEntity<?> getUsers(
       @RequestParam(required = false) String lift,
       @RequestParam(required = false) String sex,
       @RequestParam(required = false) String weight) {
+    // validate required params
+    if (lift == null || lift.trim().isEmpty()) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Lift is required");
+    }
+    if (sex == null || sex.trim().isEmpty()) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Sex is required");
+    }
 
-    if (weight != null) {
+    if (weight != null && !weight.trim().isEmpty()) {
       int actualWeight = Integer.parseInt(weight.trim());
-      return userService.getUsersByLiftAndSexAndWeight(lift, sex, actualWeight);
+      List<User> list = userService.getUsersByLiftAndSexAndWeight(lift, sex, actualWeight);
+      return ResponseEntity.ok(list);
     } else {
-      return userService.getUsersByLiftAndSex(lift, sex);
+      List<User> list = userService.getUsersByLiftAndSex(lift, sex);
+      return ResponseEntity.ok(list);
     }
   }
 
