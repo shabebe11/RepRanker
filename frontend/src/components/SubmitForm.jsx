@@ -172,6 +172,67 @@ const SubmitForm = ({ isSubmitted, setIsSubmitted }) => {
               />
             </div>
           </div>
+        <div className="submit-form-container">
+          <h1> Find Your Rank </h1>
+          <form onSubmit={handleSubmit}>
+            <div className="form-section">
+              <h2><Form.Label>Nickname</Form.Label></h2>
+              <Form.Control
+                  placeholder="Enter a name"
+                  value={newNickname}
+                  onChange={(e) => setNewNickname(e.target.value)}
+              />
+            </div>
+            <div className="form-section">
+              <h2><Form.Label>Your Weight</Form.Label></h2>
+              <Form.Control
+                  type="number"
+                  placeholder="Enter a weight"
+                  onChange={(e) => setNewWeight(e.target.value)}
+              />
+            </div>
+
+            <div className="form-section">
+              <h2><Form.Label>Sex</Form.Label></h2>
+              <div className="radio-group">
+                <Form.Check
+                    type="radio"
+                    label="Male"
+                    checked={sex === "male"}
+                    onChange={(e) => setSex("male")}
+                />
+                <Form.Check
+                    type="radio"
+                    label="Female"
+                    checked={sex === "female"}
+                    onChange={(e) => setSex("female")}
+                />
+              </div>
+            </div>
+
+            <div className="form-section">
+              <h2><Form.Label> Lifts</Form.Label></h2>
+              <div className="checkbox-group">
+                <Form.Check
+                    type="checkbox"
+                    label="Bench"
+                    checked={showBench}
+                    onChange={(e) => setShowBench(!showBench)}
+                />
+                <Form.Check
+                    type="checkbox"
+                    label="Squat"
+                    checked={showSquat}
+                    onChange={(e) => setShowSquat(!showSquat)}
+                />
+                <Form.Check
+                    type="checkbox"
+                    label="Deadlift"
+                    checked={showDeadlift}
+                    onChange={(e) => setShowDeadlift(!showDeadlift)}
+                />
+              </div>
+            </div>
 
           <RangeCollection
             showBench={showBench}
